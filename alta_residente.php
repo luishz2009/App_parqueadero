@@ -1,46 +1,40 @@
+<?php
+session_start();
+require 'conexion.php';
+include 'index.php';
+
+date_default_timezone_set("America/Bogota");
+$fecha_actual = date("Y-m-d H:i:s");
+
+$sql = "SELECT idtipo FROM entradas WHERE idtipo=2";
+$resultado = $mysqli->query($sql);
+
+
+?>
 <!DOCTYPE html>
-<html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Alta Oficial</title>
-<!-- Bootstrap CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-       
-	</head>
-	<body>
-		<h1 class="" align="center">Alta Vehículo Oficial</h1>
-		<div class="container">
-          
-            <div class="row">
-              <div>
-                 <a href="index.php" class="btn btn-primary">MENU</a>
-              </div>
-            <form action="guardar_residente.php" method="post" name="salida" id="salida" autocomplete="off">
-              <div class="form-group col-8 mb-3">
-                <label for="nombre">Placa:</label>
-                <input type="text" class="form-control" id="nombre" name="placa" placeholder="Introduce la placa" autofocus="required">
-              </div>
-                           
-              <!-- <div class="form-group col-8 mb-3">
-                <label for="tipo_vehiculo">Tipo Vehículo</label><br>
-                <select name="idtipo" id="idtipo" class="form-control col-12 mb-3" required>
-                  <option value="1">1</option>
-                  
-                </select>
-              </div> -->
-             <!--  <div class="form-group col-8 mb-3">
-                <label for="fecha_nac">Vminuto:</label>
-                <input type="number" class="form-control" id="vminuto" name="vminuto" required>
-              </div> -->
-              <div class="form-group col-8 mb-3">
-                <button class="form-control btn btn-primary" id="guardar" name="guardar" type="submit">Guardar</button>
-              </div>
-             
-            </form>
-        </div>
-         
-        </div> 
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>Ingresar Placa de Vehículo Residente</h1>
+			<form action="buscar_placa_residente.php" method="post" accept-charset="utf-8">
+				<div class="form-group col-8 mb-3">
+					<label for="placa">Placa</label>
+					<input type="text" name="placa" style="text-transform:uppercase;" class="form-control" required>
+				</div>
+				<div class="form-group col-8 mb-3">					
+					<input type="hidden" name="idtipo" value="<?php echo $fila['idtipo']; ?>">				
+				</div>
+				<div class="form-group col-8 mb-3">
+					<button type="submit" class="form-control btn btn-primary" name="buscar">Consultar placa</button>					
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
 </html>

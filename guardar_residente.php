@@ -1,34 +1,24 @@
 <?php
-
+	session_start();
 	require 'conexion.php';
-
-	//real_escape_string: para que los usuarios no digiten codigo malicioso
-	//Brinda seguridad a los formularios de parte del backend
-
-	$placa = $mysqli->real_escape_string($_POST['placa']);
+	include 'index.php';
+	//real_escape_string: para que los usuarios no digiten codigo malicioso.
+	//brinda seguridad a los formularios de parte del backend
 	
-	//$idtipo = $mysqli->real_escape_string($_POST['idtipo']);
-	//$vminuto = $mysqli->real_escape_string($_POST['vminuto']);
+	$placa = $mysqli->real_escape_string($_POST['placa']);		
 
-	
-	
-
-	$sql = "INSERT INTO residente (placa) VALUES ('$placa')";
-	//echo $sql;
+	$sql = "INSERT INTO residente(placa) VALUES ('$placa')";
 
 	$resultado = $mysqli->query($sql);
 
-
-
 	if ($resultado > 0) {
-		echo "Registro agregado";
+		echo "Registro Exitoso";
+
 	} else {
-		echo "Error al agregar el registro";
+		echo "Error al agregar el registro";	    
 	}
-	echo "<br>";
-	echo "<a href='lista_residentes.php' class='btn btn-primary'>Lista Residentes</a>";
-	
-
-
-
+	//header('location: lista_oficiales.php');
 ?>
+<br><br>
+<button type="submit" class="form-control btn btn-warning"><a href="lista_residentes.php" >Lista Residentes</a></button>
+

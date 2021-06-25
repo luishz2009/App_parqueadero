@@ -1,29 +1,27 @@
 <?php
-
 	require 'conexion.php';
+	include 'index.php';
+	//real_escape_string: para que los usuarios no digiten codigo malicioso.
+	//brinda seguridad a los formularios de parte del backend
 
-	//real_escape_string: para que los usuarios no digiten codigo malicioso
-	//Brinda seguridad a los formularios de parte del backend
+	if (isset($_POST['idtipo'])) {
+		$idtipo = $mysqli->real_escape_string($_POST['idtipo']);
+		$placa = $mysqli->real_escape_string($_POST['placa']);
+		$fecha1 = $mysqli->real_escape_string($_POST['fecha1']);
 
-	$placa = $mysqli->real_escape_string($_POST['placa']);
-	$hentrada = $mysqli->real_escape_string($_POST['hentrada']);
-	
-	$idtipo = $mysqli->real_escape_string($_POST['idtipo']);
+		$placa = strtoupper($placa);
 
-	$sql = "INSERT INTO entradas (placa,hentrada,idtipo) VALUES ('$placa','$hentrada','$idtipo')";
-	echo $sql;
+		$sql = "INSERT INTO entradas(placa,fecha1,idtipo) VALUES ('$placa','$fecha1','$idtipo')";
 
-	$resultado = $mysqli->query($sql);
+		$resultado = $mysqli->query($sql);
 
-	if ($resultado > 0) {
-		echo "Registro agregado";
-	} else {
-		echo "Error al agregar el registro";
+		if ($resultado > 0) {
+			echo "Registro Exitoso";	            
+		} else {
+			echo "Error al agregar el registro";	    
+		}
+
 	}
-	echo "<br>";
-	echo "<a href='lista_entradas.php' class='btn btn-primary'>Lista Entradas</a>";
-	
-
-
-
 ?>
+<br><br>
+<button type="submit" class="btn btn-warning"><a href="registrar_entrada.php">Volver</a></button>

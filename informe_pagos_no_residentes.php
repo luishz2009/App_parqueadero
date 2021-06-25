@@ -3,7 +3,7 @@ session_start();
 require 'conexion.php';
 include 'index.php';
 
-$sql = "SELECT idoficial,placa FROM oficial";
+$sql = "SELECT placa,diferencia,valor_pago FROM salidas WHERE idtipo=3 ";
 $resultado = $mysqli->query($sql);
 
 ?>
@@ -29,19 +29,23 @@ $resultado = $mysqli->query($sql);
 <body>
 	<div class="container">
 		<div class="row">
-			<h2>Lista de Oficiales</h2>
+			<h2>Informe de Pagos de No Residentes</h2>
 			<table id="tabla" class="display" style="width: 100%">
 				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Placa</th>					
+					<tr>						
+						<th>Placa</th>
+						<th>Tiempo Estacionado (min)</th>
+						<th>Cantidad a pagar</th>
+											
 					</tr>					
 				</thead>
 				<tbody>
 					<?php while ($fila = mysqli_fetch_array($resultado)) { ?>
-					<tr>
-						<td><?php echo $fila['idoficial']; ?></td>
+					<tr>						
 						<td><?php echo strtoupper($fila['placa']); ?></td>
+						<td><?php echo $fila['diferencia']; ?></td>
+						<td><?php echo $fila['valor_pago']; ?></td>
+						
 					</tr>
 				<?php } ?>
 				</tbody>

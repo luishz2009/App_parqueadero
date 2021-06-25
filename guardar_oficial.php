@@ -1,34 +1,24 @@
 <?php
-
+	session_start();
 	require 'conexion.php';
-
-	//real_escape_string: para que los usuarios no digiten codigo malicioso
-	//Brinda seguridad a los formularios de parte del backend
-
-	$placa = $mysqli->real_escape_string($_POST['placa']);
+	include 'index.php';
+	//real_escape_string: para que los usuarios no digiten codigo malicioso.
+	//brinda seguridad a los formularios de parte del backend
 	
-	//$idtipo = $mysqli->real_escape_string($_POST['idtipo']);
-	//$vminuto = $mysqli->real_escape_string($_POST['vminuto']);
+	$placa = $mysqli->real_escape_string($_POST['placa']);		
 
-	
-	
-
-	$sql = "INSERT INTO oficial (placa) VALUES ('$placa')";
-	//echo $sql;
+	$sql = "INSERT INTO oficial(placa) VALUES ('$placa')";
 
 	$resultado = $mysqli->query($sql);
 
-
-
 	if ($resultado > 0) {
-		echo "Registro agregado";
+		echo "Registro Exitoso";
+
 	} else {
-		echo "Error al agregar el registro";
+		echo "Error al agregar el registro";	    
 	}
-	echo "<br>";
-	echo "<a href='lista_oficiales.php' class='btn btn-primary'>Lista Oficiales</a>";
-	
-
-
-
+	//header('location: lista_oficiales.php');
 ?>
+<br><br>
+<button type="submit" class="form-control btn btn-warning"><a href="lista_oficiales.php" >Lista Oficiales</a></button>
+

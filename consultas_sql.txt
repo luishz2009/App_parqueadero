@@ -1,0 +1,4 @@
+SELECT s.placa,e.fecha1,s.fecha2,t.tipo, DATEDIFF(s.fecha2,e.fecha1) as diferencia FROM salidas s, entradas e, tipovehiculo t 
+WHERE e.placa = s.placa 
+AND e.idtipo = s.idtipo
+AND s.idtipo = t.idtipo
