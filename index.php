@@ -78,7 +78,8 @@
 	</nav>
 	<br><br>
 	<div class="">
-		<h2 align="center" class="center">APP PARQUEADERO</h2>		
+		<h2 align="center" class="center">APP PARQUEADERO</h2>	
+		<h2 align="center" class="center">PRUEBA DE GITHUB</h2>	
 	</div>
 </body>
 </html>
